@@ -55,9 +55,7 @@ __p += '<header>\n    <h1>' +
 ((__t = ( name )) == null ? '' : __t) +
 ' - ' +
 ((__t = ( artist )) == null ? '' : __t) +
-'</h1>\n</header>\n<iframe width="270" height="220" src="//www.youtube.com/embed/' +
-((__t = ( videoData.id )) == null ? '' : __t) +
-'?html5=1" frameborder="0" allowfullscreen></iframe>';
+'</h1>\n</header>\n<div id="embed-player"></div>';
 
 }
 return __p

@@ -4,7 +4,8 @@ define(['backbone'], function(Backbone){
         defaults: {
             name: '',
             artist: '',
-            videoData: ''
+            videoData: '',
+            start: 0
         },
         getVideo: function(){
             var that = this;

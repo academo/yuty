@@ -60,6 +60,7 @@ define(['marionette',
                 if(model.videoData.id){
                     var track = new TrackModel(model);
                     track.getVideo().then(function(){
+                        console.log(track);
                         vent.trigger('play:video', track);
                     });
                 }
