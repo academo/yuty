@@ -1,5 +1,5 @@
-define(['app', 'marionette', 'views/sidebar.layout', 'views/searchform.view'],
-    function(App, Marionette, Sidebar, SearchForm) {
+define(['app', 'marionette', 'views/dashboard.layout', 'views/searchform.view'],
+    function(App, Marionette, Dashboard, SearchForm) {
         return Marionette.Controller.extend({
             initialize: function(options) {
                 
@@ -9,9 +9,9 @@ define(['app', 'marionette', 'views/sidebar.layout', 'views/searchform.view'],
                 var container = new Backbone.Marionette.Region({
                     el: "#container"
                 });
-                var sidebar = new Sidebar();
-                container.show(sidebar);
-                sidebar.searchForm.show(new SearchForm());
+                var dashboard = new Dashboard();
+                container.show(dashboard);
+                dashboard.searchForm.show(new SearchForm());
             }
         });
     });

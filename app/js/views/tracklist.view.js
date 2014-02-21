@@ -1,23 +1,18 @@
 //view which manages basic view
-define(['marionette', 'vent'], function(Marionette, vent) {
+define(['marionette'], function(Marionette) {
     return Marionette.ItemView.extend({
-        template: templates['search-form'],
+        template: templates['track-list'],
         //search form and input for basic search
         ui: {
-            form: 'form.search-form',
-            input: 'input[type=text]'
         },
         //on form submit
         events: {
-            'submit @ui.form' : 'search'
+
         },
         //search event to handle form submit
         search: function(e){
             e.preventDefault();
             //send simpleSearchSubmit event to App.
-            if(this.ui.input.val() === ""){
-                return false;
-            }
             vent.trigger('search:set', this.ui.input.val());
         }
     });
