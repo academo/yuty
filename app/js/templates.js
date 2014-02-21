@@ -51,9 +51,13 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<iframe width="270" height="220" src="//www.youtube.com/embed/' +
+__p += '<header>\n    <h1>' +
+((__t = ( name )) == null ? '' : __t) +
+' - ' +
+((__t = ( artist )) == null ? '' : __t) +
+'</h1>\n</header>\n<iframe width="270" height="220" src="//www.youtube.com/embed/' +
 ((__t = ( videoData.id )) == null ? '' : __t) +
-'" frameborder="0" allowfullscreen></iframe>';
+'?html5=1" frameborder="0" allowfullscreen></iframe>';
 
 }
 return __p

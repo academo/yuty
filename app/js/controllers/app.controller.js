@@ -7,7 +7,8 @@ define(['marionette',
         'views/tracklist.view',
         'views/track.view',
         'views/video.view',
-        'models/search.model'
+        'models/search.model',
+        'models/track.model'
         ],
     function(
         Marionette, 
@@ -19,7 +20,8 @@ define(['marionette',
         TracklistView,
         TrackView,
         VideoView,
-        SearchModel
+        SearchModel,
+        TrackModel
         ) {
         return Marionette.Controller.extend({
             initialize: function(options) {
@@ -31,10 +33,12 @@ define(['marionette',
                 //listen when a track is played
                 vent.on('play:video', function(track){
                     var player = new VideoView({
-                        model: track
+                        model: track.save()
                     });
                     DashboardLayout.videoPlayer.show(player);
                 });
+
+                this.restoreLastVideo();
             },
             //first page load
             index: function(options){
@@ -49,6 +53,16 @@ define(['marionette',
                     });
                     TrackResultsLayout.tracksList.show(trackList);
                 });
+            },
+            restoreLastVideo: function(){
+                //restore last played song from localstorage
+                var model = JSON.parse(localStorage.getItem('yuty-current-track'));
+                if(model.videoData.id){
+                    var track = new TrackModel(model);
+                    track.getVideo().then(function(){
+                        vent.trigger('play:video', track);
+                    });
+                }
             }
         });
     });

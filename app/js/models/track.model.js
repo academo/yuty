@@ -10,22 +10,8 @@ define(['backbone'], function(Backbone){
             var that = this;
             var deferred = $.Deferred();
             //get youtube video data
-            $.ajax('http://gdata.youtube.com/feeds/api/videos', {
-                data: {
-                    //only 1 most relevant result from first page
-                    'max-results': 1,
-                    'start-index': 1,
-                    //use youtube API 2
-                    'v': 2,
-                    //only emmbebable videos
-                    'format': 5,
-                    //search term
-                    'q': that.get('name') + ' ' + that.get('artist'),
-                    //ask youtube to return jsonp request
-                    'alt': 'json-in-script'
-                },
-                dataType: 'jsonp'
-            }).then(function(data){
+            this.queryYoutube()
+            .then(function(data){
                 //check if data or almost a result
                 if(data.feed && data.feed.entry && data.feed.entry[0]){
                     //set video data based on youtube response
@@ -47,6 +33,28 @@ define(['backbone'], function(Backbone){
             //?q=la%20camisa%20negra%20juanes&
             //start-index=1&max-results=1&v=2&alt=jsonc&format=5
             return deferred;
+        },
+        queryYoutube: function(q){
+            return $.ajax('http://gdata.youtube.com/feeds/api/videos', {
+                data: {
+                    //only 1 most relevant result from first page
+                    'max-results': 1,
+                    'start-index': 1,
+                    //use youtube API 2
+                    'v': 2,
+                    //only emmbebable videos
+                    'format': 5,
+                    //search term
+                    'q': this.get('name') + ' ' + this.get('artist'),
+                    //ask youtube to return jsonp request
+                    'alt': 'json-in-script'
+                },
+                dataType: 'jsonp'
+            });
+        },
+        save: function(){
+            localStorage.setItem('yuty-current-track', JSON.stringify(this.toJSON()));
+            return this;
         }
     });
 });
