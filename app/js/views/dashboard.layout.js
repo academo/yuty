@@ -1,11 +1,12 @@
 define(['marionette'], function(Marionette) {
-    return Marionette.Layout.extend({
+    var dashboard = Marionette.Layout.extend({
         template: templates.dashboard,
         regions: {
             searchForm: '#search-form',
             playlists: '#playlists',
-            tracksList: '#tracks-list',
-            artistList: '#artists-list'
+            tracksResults: '#tracks-results',
+            videoPlayer: '#video-player',
         }
     });
+    return new dashboard();
 });

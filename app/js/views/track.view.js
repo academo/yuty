@@ -1,5 +1,6 @@
 define(['marionette', 'vent'], function(Marionette, vent){
     return Marionette.ItemView.extend({
+        tagName: 'tr',
         template: templates['track-item'],
         ui: {
             playButton: 'button.play'
@@ -8,8 +9,9 @@ define(['marionette', 'vent'], function(Marionette, vent){
             'click @ui.playButton': 'playSong'
         },
         playSong: function(){
-            this.model.getVideo().then(function(videoData){
-                vent.trigger('play:song', videoData);
+            var that = this;
+            this.model.getVideo().then(function(){
+                vent.trigger('play:video', that.model);
             });
         }
     });

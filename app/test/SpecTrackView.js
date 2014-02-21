@@ -20,7 +20,7 @@ define(['views/track.view', 'models/track.model', 'vent'],
             var view = new TrackView({
                 model: model
             });
-            vent.on('play:song', function(videoData){
+            vent.on('play:video', function(videoData){
                 expect(videoData).to.be.an('object');
                 done();
             });

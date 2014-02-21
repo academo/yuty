@@ -2,7 +2,7 @@
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="sidebar search-bar medium-4 columns">\n    <div id="search-form"></div>\n    <div id="playlist"></div>\n</div>\n<div class="list-view medium-8 columns">\n    <div id="tracks-list"></div>\n    <div id="artists-list"></div>\n</div>\n';
+__p += '<div class="sidebar search-bar medium-2 columns">\n    <div id="search-form"></div>\n    <div id="playlist"></div>\n</div>\n<div class="medium-7 columns" id="tracks-results"></div>\n<div class="video-sidebar medium-3 columns">\n    <div id="video-player"></div>\n</div>';
 
 }
 return __p
@@ -20,11 +20,40 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<tr>\n    <td>' +
+__p += '<td>' +
 ((__t = ( name )) == null ? '' : __t) +
-'</td>\n    <td>' +
+'</td>\n<td>' +
 ((__t = ( artist )) == null ? '' : __t) +
-'</td>\n    <td>\n        <button class="play"></button>\n    </td>\n</tr>';
+'</td>\n<td>\n    <button class="play">Play</button>\n</td>y';
+
+}
+return __p
+}})();
+(function() {(window["templates"] = window["templates"] || {})["track-list"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<table>\n    <thead>\n        <tr>\n            <th>Title</th>\n            <th>Artist</th>\n            <th></th>\n        </tr>\n    </thead>\n    <tbody></tbody>\n</table>\n';
+
+}
+return __p
+}})();
+(function() {(window["templates"] = window["templates"] || {})["track-results"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div id="tracks-list"></div>\n<div id="artists-list"></div>';
+
+}
+return __p
+}})();
+(function() {(window["templates"] = window["templates"] || {})["video-player"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<iframe width="270" height="220" src="//www.youtube.com/embed/' +
+((__t = ( videoData.id )) == null ? '' : __t) +
+'" frameborder="0" allowfullscreen></iframe>';
 
 }
 return __p

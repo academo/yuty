@@ -1,6 +1,6 @@
 /*
-* RequireJS settings
-*/
+ * RequireJS settings
+ */
 require.config({
     paths: {
         backbone: 'bower_components/backbone/backbone',
@@ -29,6 +29,9 @@ require.config({
 });
 
 //application initializers load
-define(['init'], function(App) {
+define(['initializers/init-routes', 'initializers/init-layouts'], function(App) {
+    App.on('initialize:after', function() {
+        Backbone.history.start();
+    });
     App.start();
 });

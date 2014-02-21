@@ -1,17 +1,54 @@
-define(['app', 'marionette', 'views/dashboard.layout', 'views/searchform.view'],
-    function(App, Marionette, Dashboard, SearchForm) {
+define(['marionette', 
+        'vent',
+        'backbone',
+        'views/dashboard.layout', 
+        'views/searchform.view', 
+        'views/track-results.layout',
+        'views/tracklist.view',
+        'views/track.view',
+        'views/video.view',
+        'models/search.model'
+        ],
+    function(
+        Marionette, 
+        vent,
+        Backbone, 
+        DashboardLayout, 
+        SearchFormView, 
+        TrackResultsLayout,
+        TracklistView,
+        TrackView,
+        VideoView,
+        SearchModel
+        ) {
         return Marionette.Controller.extend({
             initialize: function(options) {
                 
-            },
-            //gets mapped to in AppRouter's appRoutes
-            index: function() {
-                var container = new Backbone.Marionette.Region({
-                    el: "#container"
+                //listen to new search
+                vent.on('search:set', function(term){
+                    Backbone.history.navigate('search/' + term, {trigger: true});
                 });
-                var dashboard = new Dashboard();
-                container.show(dashboard);
-                dashboard.searchForm.show(new SearchForm());
+                //listen when a track is played
+                vent.on('play:video', function(track){
+                    var player = new VideoView({
+                        model: track
+                    });
+                    DashboardLayout.videoPlayer.show(player);
+                });
+            },
+            //first page load
+            index: function(options){
+
+            },
+            //when a search is peformed
+            search: function(term){
+                SearchModel.search(term).then(function(tracksCollection){
+                    var trackList = new TracklistView({
+                        collection: tracksCollection,
+                        itemView: TrackView
+                    });
+                    TrackResultsLayout.tracksList.show(trackList);
+                });
             }
         });
     });
