@@ -45,14 +45,14 @@ gulp.task('jst', function() {
 });
 
 gulp.task('sprites', function() {
-    gulp.src('./app/img/ico/*.png')
+    gulp.src('./app/images/ico/*.png')
         .pipe(sprite('sprites.png', {
-            imagePath: '/img',
+            imagePath: '/images',
             cssPath: './app/css/less',
             prefix: '',
             preprocessor: 'less'
         }))
-        .pipe(gulp.dest('./app/img'));
+        .pipe(gulp.dest('./app/images'));
 });
 
 gulp.task('scripts', function() {
@@ -67,11 +67,18 @@ gulp.task('views', function() {
         .pipe(connect.reload());
 });
 
+gulp.task('images', function() {
+    gulp
+        .src('./app/images/**/*.{png,jpg,gif}')
+        .pipe(connect.reload());
+});
+
 // The default task (called when you run `gulp`)
 gulp.task('default', ['connect'], function() {
     gulp.watch('app/css/less/**/*.less', ['styles']);
         gulp.watch('app/js/**/*.js', ['scripts']);
         gulp.watch('app/*.html', ['views']);
         gulp.watch('app/templates/*.html', ['jst']);
-        gulp.watch('app/img/ico/*.png', ['sprites']);
+        gulp.watch('app/images/ico/*.png', ['sprites']);
+        gulp.watch('app/images/**/*.{png,jpg,gif}', ['images']);
 });

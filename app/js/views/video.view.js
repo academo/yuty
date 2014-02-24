@@ -4,7 +4,8 @@ define(['marionette', 'vent'], function(Marionette, vent) {
         //on show create player with player id and set start time
         //start time is default 0 for no restoring videos
         ui: {
-            nextButton: 'button.next'
+            nextButton: 'button.next',
+            iframe: '#embed-player'
         },
         events: {
             'click @ui.nextButton': 'nextVideo'
@@ -12,7 +13,7 @@ define(['marionette', 'vent'], function(Marionette, vent) {
         onShow: function() {
             this.player = new YT.Player('embed-player', {
                 width: 270,
-                height: 220,
+                height: 240,
                 videoId: this.model.get('videoData').id,
                 events: {
                     onReady: _.bind(this.onVideoReady, this),
@@ -30,18 +31,26 @@ define(['marionette', 'vent'], function(Marionette, vent) {
         },
         //on video ready up volume and start playinh
         onVideoReady: function(e) {
-            e.target.setVolume(100);
+            e.target.setVolume(0);
             //e.target.playVideo();
             var that = this;
             this.timer = setInterval(function(){
                 that.model.set('start', that.player.getCurrentTime());
                 that.model.saveRecent();
             }, 10000);
+            setTimeout(function(){
+                $('#embed-player').css('min-width', $("#video-player").width() + 'px');
+            }, 100);
         },
         //when video stops trigger play next from list
         onVideoStateChange: function(e){
-            if(e.data === 0){
-                vent.trigger('play:next');
+            switch(e.data){
+                case 0:
+                    vent.trigger('play:next');
+                    break;
+                case 5:
+                    
+                    break;
             }
         },
         nextVideo: function(){

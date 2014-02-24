@@ -5,14 +5,126 @@
 @ms: true;
 @w3c: true;
 
-
 //import sprite files
 @import 'sprites.less';
-#container{
-    margin-top: 20px;
+
+@darkbg: #14171b;
+
+body{
+    font-family: 'Roboto', sans-serif;
 }
+#container{
+    margin: 0;
+    padding: 0;
+}
+
+.main-area{
+    padding: 0;
+}
+
 #tracks-results{
     table{
         width: 100%;
     }
+}
+
+#logo{
+    font-size: 50px;
+    color: #fff;
+}
+
+.sidebar{
+    background-color: @darkbg;
+    padding-top: 20px;
+    height:100vh;
+    ul.side-nav{
+        padding-left: 10px;
+        li{
+            margin: 12px 0;
+            a{
+                color: #fff;
+                font-size: 15px;
+                font-weight: 300;
+            }
+            a:hover, a.active{
+                color: #deab45;
+            }
+        }
+        li.divider{
+            border: 0;
+            margin: 40px 0;
+        }
+    }
+}
+#search-form{
+    margin-top: 20px;
+    width: 100%;
+    form{
+        input[type=text]{
+            background-image: url(../images/search-ico.png);
+            background-repeat: no-repeat;
+            background-position: right;
+            background-origin: content-box;
+            padding-right: 5px;
+        }
+    }
+}
+#tracks-results{
+    overflow: auto;
+    height: 100vh;
+    table.results{
+        td:nth-child(1), td:nth-child(2){
+            width: 40%;
+        }
+        td.controls{
+            padding-top: 5px;
+        }
+        tr,td{
+            margin: 0;
+            padding: 0 10px;
+        }
+    }
+}
+
+.video-sidebar{
+    padding: 0;
+}
+
+#video-player{
+    header{
+        background-color: @darkbg;
+        h1{
+            color: #fff;
+            font-size: 22px;
+            padding: 5px 10px 0;
+            margin: 0;
+        }
+        h2{
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            padding: 0 10px 5px;
+            font-size: 15px;
+        }
+    }
+}
+
+button.play{
+    .sprite(@play-ico);
+    display: inline-block;
+    padding: 0;
+    background-color: transparent;
+}
+button.queue{
+    .sprite(@plus-ico);
+    display: inline-block;
+    padding: 0;
+    background-color: transparent;
+}
+
+button.unqueue{
+    .sprite(@minus-ico);
+    display: inline-block;
+    padding: 0;
+    background-color: transparent;
 }

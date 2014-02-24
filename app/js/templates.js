@@ -2,7 +2,7 @@
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="sidebar search-bar medium-2 columns">\n    <div id="search-form"></div>\n    <div id="playlist"></div>\n</div>\n<div class="medium-7 columns" id="tracks-results"></div>\n<div class="video-sidebar medium-3 columns">\n    <div id="video-player"></div>\n    <div id="queue-list"></div>\n</div>';
+__p += '<div class="sidebar medium-2 columns">\n    <div id="logo">\n        Yuty\n    </div>\n    <div id="search-form"></div>\n    <nav class="main">\n        <ul class="side-nav">\n            <li><a href="#">Lorem.</a></li>\n            <li><a href="#">Labore!</a></li>\n            <li><a href="#">Non.</a></li>\n            <li><a href="#">Molestiae.</a></li>\n            <li><a href="#">Iusto.</a></li>\n            <li class="divider"></li>\n            <li><a href="#">Lorem ipsum dolor.</a></li>\n            <li><a href="#">Nisi, itaque, vero.</a></li>\n            <li><a href="#">Vero, error, iste!</a></li>\n        </ul>\n    </nav>\n</div>\n<div class="main-area medium-7 columns">\n    <div id="tracks-results"></div>\n</div>\n<div class="video-sidebar medium-3 columns">\n    <div id="video-player"></div>\n    <div id="queue-list"></div>\n</div>';
 
 }
 return __p
@@ -20,7 +20,7 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<form class="search-form">\n    <div class="row collapse">\n        <div class="small-8 columns">\n            <input type="text" placeholder="Song, Artist, Album">\n        </div>\n        <div class="small-4 columns">\n            <button class="tiny" type="submit">Search</button>\n        </div>\n    </div>\n</form>\n';
+__p += '<form class="search-form">\n    <div class="row collapse">\n        <div class="small-12 columns">\n            <input type="text" placeholder="Song, Artist, Album">\n        </div>\n    </div>\n</form>\n';
 
 }
 return __p
@@ -33,7 +33,7 @@ __p += '<td>' +
 ((__t = ( name )) == null ? '' : __t) +
 '</td>\n<td>' +
 ((__t = ( artist )) == null ? '' : __t) +
-'</td>\n<td>\n    <button class="play">Play</button>\n    <button class="queue">Queue</button>\n    <button class="unqueue">Remove</button>\n</td>y';
+'</td>\n<td class="controls">\n    <button class="play"></button>\n    <button class="queue"></button>\n    <button class="unqueue"></button>\n</td>y';
 
 }
 return __p
@@ -42,7 +42,7 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<table>\n    <thead>\n        <tr>\n            <th>Title</th>\n            <th>Artist</th>\n            <th></th>\n        </tr>\n    </thead>\n    <tbody></tbody>\n</table>\n';
+__p += '<table class="results">\n    <thead>\n        <tr>\n            <th>Title</th>\n            <th>Artist</th>\n            <th></th>\n        </tr>\n    </thead>\n    <tbody></tbody>\n</table>\n';
 
 }
 return __p
@@ -62,9 +62,9 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<header>\n    <h1>' +
 ((__t = ( name )) == null ? '' : __t) +
-' - ' +
+'</h1>\n    <h2>' +
 ((__t = ( artist )) == null ? '' : __t) +
-'</h1>\n</header>\n<div id="embed-player"></div>\n<button class="next">Next</button>';
+'</h2>\n</header>\n<div id="embed-player"></div>\n<button class="next">Next</button>';
 
 }
 return __p
