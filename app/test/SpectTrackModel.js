@@ -20,10 +20,17 @@ define(['models/track.model'], function(TrackModel){
                 name: 'La camisa negra',
                 artist: 'Juanes'
             });
-            track.save();
+            track.saveRecent();
             var model = JSON.parse(localStorage.getItem('yuty-current-track'));
             expect(model).to.be.an('object');
             expect(model.name).to.not.be.empty;
+        });
+        it('Generates guid', function(){
+            var track = new TrackModel({
+                name: 'La camisa negra',
+                artist: 'Juanes'
+            });
+            expect(track.get('guid')).to.not.be.empty;
         });
     });
 });

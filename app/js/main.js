@@ -8,7 +8,8 @@ require.config({
         jquery: 'bower_components/jquery/dist/jquery.min',
         marionette: 'bower_components/marionette/lib/backbone.marionette.min',
         'backbone.wreqr': 'bower_components/backbone.wreqr/lib/backbone.wreqr.min',
-        'backbone.babysitter': 'bower_components/backbone.babysitter/lib/backbone.babysitter.min'
+        'backbone.babysitter': 'bower_components/backbone.babysitter/lib/backbone.babysitter.min',
+        localstorage: 'bower_components/backbone.localstorage/backbone.localStorage-min'
     },
     shim: {
         jquery: {

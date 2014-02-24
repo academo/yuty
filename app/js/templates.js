@@ -2,7 +2,16 @@
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="sidebar search-bar medium-2 columns">\n    <div id="search-form"></div>\n    <div id="playlist"></div>\n</div>\n<div class="medium-7 columns" id="tracks-results"></div>\n<div class="video-sidebar medium-3 columns">\n    <div id="video-player"></div>\n</div>';
+__p += '<div class="sidebar search-bar medium-2 columns">\n    <div id="search-form"></div>\n    <div id="playlist"></div>\n</div>\n<div class="medium-7 columns" id="tracks-results"></div>\n<div class="video-sidebar medium-3 columns">\n    <div id="video-player"></div>\n    <div id="queue-list"></div>\n</div>';
+
+}
+return __p
+}})();
+(function() {(window["templates"] = window["templates"] || {})["queue-list"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<table>\n    <thead>\n        <tr>\n            <th>Title</th>\n            <th>Artist</th>\n            <th></th>\n        </tr>\n    </thead>\n    <tbody></tbody>\n</table>\n';
 
 }
 return __p
@@ -24,7 +33,7 @@ __p += '<td>' +
 ((__t = ( name )) == null ? '' : __t) +
 '</td>\n<td>' +
 ((__t = ( artist )) == null ? '' : __t) +
-'</td>\n<td>\n    <button class="play">Play</button>\n</td>y';
+'</td>\n<td>\n    <button class="play">Play</button>\n    <button class="queue">Queue</button>\n    <button class="unqueue">Remove</button>\n</td>y';
 
 }
 return __p
@@ -55,7 +64,7 @@ __p += '<header>\n    <h1>' +
 ((__t = ( name )) == null ? '' : __t) +
 ' - ' +
 ((__t = ( artist )) == null ? '' : __t) +
-'</h1>\n</header>\n<div id="embed-player"></div>';
+'</h1>\n</header>\n<div id="embed-player"></div>\n<button class="next">Next</button>';
 
 }
 return __p
