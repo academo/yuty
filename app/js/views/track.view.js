@@ -1,14 +1,18 @@
 define(['marionette', 'vent'], function(Marionette, vent){
     return Marionette.ItemView.extend({
-        tagName: 'tr',
+        tagName: 'li',
         template: templates['track-item'],
         ui: {
             playButton: 'button.play',
             queueButton: 'button.queue',
-            unqueueButton: 'button.unqueue'
+            unqueueButton: 'button.unqueue',
+            track: 'div.track',
+            img: 'img'
         },
         events: {
             'click @ui.playButton': 'playSong',
+            'click @ui.track': 'playSong',
+            'click @ui.img': 'playSong',
             'click @ui.queueButton': 'queueSong',
             'click @ui.unqueueButton': 'unqueueSong'
         },

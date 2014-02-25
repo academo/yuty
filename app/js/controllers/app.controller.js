@@ -27,8 +27,9 @@ define(['marionette',
     ) {
         return Marionette.Controller.extend({
             initialize: function(options) {
-
                 var that = this;
+
+                this.searchLimit = parseInt(($('.main-area').width() / 160) * 2);
                 //listen to new search
                 vent.on('search:set', function(term) {
                     Backbone.history.navigate('search/' + term, {
@@ -69,7 +70,7 @@ define(['marionette',
             //when a search is peformed
             search: function(term) {
                 //ask Search model to search a term
-                SearchModel.search(term).then(function(tracksCollection) {
+                SearchModel.search(term, this.searchLimit).then(function(tracksCollection) {
                     //create a tracklist view, set collection from results
                     var trackList = new TracklistView({
                         collection: tracksCollection,

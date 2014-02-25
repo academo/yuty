@@ -1,4 +1,4 @@
-define(['marionette', 'views/nowrap.region'], function(Marionette, NoWrapRegion) {
+define(['marionette'], function(Marionette) {
     var trackResults = Marionette.Layout.extend({
         template: templates['track-results'],
         regions: {

@@ -6,19 +6,82 @@ body {
   padding: 0;
 }
 .main-area {
+  padding: 20px;
+  overflow: auto;
+  background-color: #e4e4ef;
+}
+#tracks-results header {
+  font-size: 24px;
+  color: #444444;
+}
+#tracks-results ul {
+  margin-top: 20px;
   padding: 0;
+  list-style: none;
 }
-#tracks-results table {
-  width: 100%;
+#tracks-results ul li {
+  position: relative;
+  cursor: pointer;
+  vertical-align: top;
+  display: inline-block;
+  margin: 0 15px 20px;
+  min-width: 130px;
+  text-align: left;
 }
-#logo {
-  font-size: 50px;
+#tracks-results ul li img.small {
+  display: none;
+}
+#tracks-results ul li img.large {
+  width: 125px;
+  margin-bottom: 5px;
+}
+#tracks-results ul .track:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 126px;
+  height: 94px;
+  content: url(../images/large-cover-shadow.png);
+}
+#tracks-results ul button {
+  display: none;
+}
+#tracks-results h1,
+#tracks-results h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 130px;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0;
+}
+#tracks-results h1 {
+  color: #6e6e71;
+}
+#tracks-results h2 {
+  color: #b3b3b6;
+}
+.separator {
+  display: block;
+  height: 4px;
+  background-color: #1d1d27;
+  border-top: 1px solid #3a3a49;
+  border-bottom: 1px solid #3a3a49;
+}
+header.main {
+  height: 70px;
+  background-color: #313141;
+}
+header.main #logo {
+  font-size: 40px;
   color: #fff;
+  padding: 10px;
 }
 .sidebar {
-  background-color: #14171b;
+  overflow: auto;
+  background-color: #313141;
   padding-top: 20px;
-  height: 100vh;
 }
 .sidebar ul.side-nav {
   padding-left: 10px;
@@ -40,37 +103,25 @@ body {
   margin: 40px 0;
 }
 #search-form {
-  margin-top: 20px;
-  width: 100%;
+  padding-top: 17px;
 }
 #search-form form input[type=text] {
+  -webkit-border-radius: 15px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 15px;
+  -moz-background-clip: padding;
+  border-radius: 15px;
+  background-clip: padding-box;
   background-image: url(../images/search-ico.png);
   background-repeat: no-repeat;
-  background-position: right;
-  background-origin: content-box;
-  padding-right: 5px;
-}
-#tracks-results {
-  overflow: auto;
-  height: 100vh;
-}
-#tracks-results table.results td:nth-child(1),
-#tracks-results table.results td:nth-child(2) {
-  width: 40%;
-}
-#tracks-results table.results td.controls {
-  padding-top: 5px;
-}
-#tracks-results table.results tr,
-#tracks-results table.results td {
-  margin: 0;
-  padding: 0 10px;
+  background-position: 8px 10px;
+  padding-left: 30px;
 }
 .video-sidebar {
   padding: 0;
 }
 #video-player header {
-  background-color: #14171b;
+  background-color: #313141;
 }
 #video-player header h1 {
   color: #fff;
@@ -85,30 +136,87 @@ body {
   padding: 0 10px 5px;
   font-size: 15px;
 }
-button.play {
-  background-image: url(/images/sprites.png);
-  background-position: -5px -35px;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  padding: 0;
-  background-color: transparent;
+#queue-list header {
+  display: none;
 }
-button.queue {
-  background-image: url(/images/sprites.png);
-  background-position: -5px -65px;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  padding: 0;
-  background-color: transparent;
+#queue-list ul {
+  list-style: none;
+  padding-left: 0;
+  padding-bottom: 20px;
+  margin: 0;
 }
-button.unqueue {
+#queue-list ul li {
+  position: relative;
+}
+#queue-list ul li img.small {
+  vertical-align: top;
+  display: inline-block;
+  width: 34px;
+}
+#queue-list ul li img.large {
+  display: none;
+}
+#queue-list ul li .track-data {
+  vertical-align: top;
+  display: inline-block;
+}
+#queue-list ul li:last-child:after {
+  border: 0;
+  height: 0;
+  content: '';
+}
+#queue-list ul li:after {
+  margin: 10px 0;
+  display: block;
+  height: 3px;
+  background-color: #1d1d27;
+  border-top: 1px solid #3a3a49;
+  border-bottom: 1px solid #3a3a49;
+  content: ' ';
+}
+#queue-list ul .track:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 26px;
+  content: url(../images/small-cover-shadow.png);
+}
+#queue-list ul li:hover button.unqueue {
+  display: block !important;
+}
+#queue-list h1,
+#queue-list h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 130px;
+}
+#queue-list h1 {
+  color: #b2b2be;
+  margin: 0;
+  font-size: 14px;
+}
+#queue-list h2 {
+  color: #5b5b64;
+  margin: 0;
+  font-size: 14px;
+}
+#queue-list button {
+  display: none;
+}
+#queue-list div.track {
+  cursor: pointer;
+}
+#queue-list button.unqueue {
+  position: absolute;
+  top: -5px;
+  left: -5px;
   background-image: url(/images/sprites.png);
   background-position: -5px -5px;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  padding: 0;
+  width: 14px;
+  height: 14px;
   background-color: transparent;
+  padding: 0;
+  margin: 0;
 }

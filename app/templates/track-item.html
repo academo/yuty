@@ -1,7 +1,11 @@
-<td><%= name %></td>
-<td><%= artist %></td>
-<td class="controls">
-    <button class="play"></button>
-    <button class="queue"></button>
-    <button class="unqueue"></button>
-</td>y
+<div class="track">
+    <img class="small" src="<%= images.small %>" alt="<%= name %> - ><%= artist %>">
+    <img class="large" src="<%= images.large %>" alt="<%= name %> - ><%= artist %>">
+    <div class="track-data">
+        <h1><%= name %></h1>
+        <h2><%= artist %></h2>
+    </div>
+</div>
+<button class="unqueue"></button>
+<button class="play"></button>
+<button class="queue"></button>

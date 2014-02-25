@@ -9,7 +9,7 @@ define(['collections/trackslist.collection', 'models/track.model', 'vent'],
             models = [
                 new TrackModel({
                     name: 'song1',
-                    artist: 'artist'
+                    artist: 'artist',
                 }),
                 new TrackModel({
                     name: 'song2',

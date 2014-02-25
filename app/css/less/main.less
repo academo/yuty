@@ -7,8 +7,9 @@
 
 //import sprite files
 @import 'sprites.less';
+@import 'lesshat.less';
 
-@darkbg: #14171b;
+@darkbg: #313141;
 
 body{
     font-family: 'Roboto', sans-serif;
@@ -19,24 +20,88 @@ body{
 }
 
 .main-area{
-    padding: 0;
+    padding: 20px;
+    overflow: auto;
+    background-color: #e4e4ef;
 }
 
 #tracks-results{
-    table{
-        width: 100%;
+    header{
+        font-size: 24px;
+        color: #444444;
+    }
+    ul{
+        margin-top: 20px;
+        padding: 0;
+        list-style: none;
+        li{
+            position: relative;
+            cursor: pointer;
+            vertical-align: top;
+            display: inline-block;
+            margin: 0 15px 20px;
+            min-width: 130px;
+            text-align: left;
+            img.small{
+                display: none;
+            }
+            img.large{
+                width: 125px;
+                margin-bottom: 5px;
+            }
+        }
+        .track:before{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 126px;
+            height: 94px;
+            content: url(../images/large-cover-shadow.png);
+        }
+        button{
+            display: none;
+        }
+    }
+    h1,h2{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 130px;
+        font-size: 14px;
+        line-height: 17px;
+        margin: 0;
+    }
+    h1{
+        color: #6e6e71;
+    }
+    h2{
+        color: #b3b3b6;
     }
 }
 
-#logo{
-    font-size: 50px;
-    color: #fff;
+.separator{
+    display: block;
+    height: 4px;
+    background-color: #1d1d27;
+    border-top: 1px solid #3a3a49;
+    border-bottom: 1px solid #3a3a49;
+}
+
+header.main{
+    height:70px;
+    background-color: @darkbg;
+    #logo{
+        font-size: 40px;
+        color: #fff;
+        padding: 10px;
+    }
 }
 
 .sidebar{
+    overflow: auto;
     background-color: @darkbg;
     padding-top: 20px;
-    height:100vh;
+    //height:88vh;
     ul.side-nav{
         padding-left: 10px;
         li{
@@ -56,32 +121,17 @@ body{
         }
     }
 }
+
 #search-form{
-    margin-top: 20px;
-    width: 100%;
+    padding-top: 17px;
     form{
         input[type=text]{
+            .border-radius(15px);
             background-image: url(../images/search-ico.png);
             background-repeat: no-repeat;
-            background-position: right;
-            background-origin: content-box;
-            padding-right: 5px;
-        }
-    }
-}
-#tracks-results{
-    overflow: auto;
-    height: 100vh;
-    table.results{
-        td:nth-child(1), td:nth-child(2){
-            width: 40%;
-        }
-        td.controls{
-            padding-top: 5px;
-        }
-        tr,td{
-            margin: 0;
-            padding: 0 10px;
+            background-position: 8px 10px;
+            //background-origin: content-box;
+            padding-left: 30px;
         }
     }
 }
@@ -109,22 +159,87 @@ body{
     }
 }
 
-button.play{
-    .sprite(@play-ico);
-    display: inline-block;
-    padding: 0;
-    background-color: transparent;
-}
-button.queue{
-    .sprite(@plus-ico);
-    display: inline-block;
-    padding: 0;
-    background-color: transparent;
-}
-
-button.unqueue{
-    .sprite(@minus-ico);
-    display: inline-block;
-    padding: 0;
-    background-color: transparent;
+#queue-list{
+    header{
+        display: none;
+    }
+    ul{
+        list-style: none;
+        padding-left: 0;
+        padding-bottom: 20px;
+        margin: 0;
+        li{
+            position: relative;
+            img.small{
+                vertical-align: top;
+                display: inline-block;
+                width: 34px;
+            }
+            img.large{
+                display: none;
+            }
+            .track-data{
+                vertical-align: top;
+                display: inline-block;
+            }
+        }
+        li:last-child:after{
+            border:0;
+            height: 0;
+            content: '';
+        }
+        li:after{
+            margin: 10px 0;
+            display: block;
+            height: 3px;
+            background-color: #1d1d27;
+            border-top: 1px solid #3a3a49;
+            border-bottom: 1px solid #3a3a49;
+            content: ' ';
+        }
+        .track:before{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 34px;
+            height: 26px;
+            content: url(../images/small-cover-shadow.png);
+        }
+        li:hover{
+            button.unqueue{
+                display: block !important;
+            }
+        }
+    }
+    h1,h2{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 130px;
+    }
+    h1{
+        color: #b2b2be;
+        margin: 0;
+        font-size: 14px;
+    }
+    h2{
+        color: #5b5b64;
+        margin: 0;
+        font-size: 14px;
+    }
+    button{
+        display: none;
+    }
+    div.track{
+        cursor: pointer;
+    }
+    button.unqueue{
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        .sprite(@remove-song);
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+    }
 }

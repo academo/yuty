@@ -31,7 +31,7 @@ define(['marionette', 'vent'], function(Marionette, vent) {
         },
         //on video ready up volume and start playinh
         onVideoReady: function(e) {
-            e.target.setVolume(0);
+            e.target.setVolume(100);
             //e.target.playVideo();
             var that = this;
             this.timer = setInterval(function(){

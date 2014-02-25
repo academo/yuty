@@ -6,10 +6,16 @@ define(['backbone'], function(Backbone) {
             name: '',
             artist: '',
             videoData: '',
-            start: 0
+            start: 0,
+            images: [],
+            image: []
         },
         initialize: function() {
             this.set('guid', this.generateGuid());
+            var images = _.object(this.get('image').map(function(image){
+                return [image.size, image['#text']]
+            }));
+            this.set('images', images);
         },
         getVideo: function() {
             var that = this;
