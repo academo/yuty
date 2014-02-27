@@ -7,6 +7,7 @@ define(['marionette',
         'views/tracklist.view',
         'views/track.view',
         'views/video.view',
+        'views/playercontrols.view',
         'models/search.model',
         'models/track.model',
         'collections/trackslist.collection'
@@ -21,6 +22,7 @@ define(['marionette',
         TracklistView,
         TrackView,
         VideoView,
+        PlayerControlsView,
         SearchModel,
         TrackModel,
         TracksListCollection
@@ -58,6 +60,14 @@ define(['marionette',
                 //remove a song from queue list
                 vent.on('unqueue:song', function(track) {
                     that.queue.unqueue(track);
+                });
+
+                vent.on('update:player', function(track, player){
+                    var playerControls = new PlayerControlsView({
+                        model: track,
+                        player: player
+                    });
+                    DashboardLayout.playerControls.show(playerControls);
                 });
 
                 this.restoreLastVideo();

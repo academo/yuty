@@ -8,7 +8,8 @@ define(['backbone'], function(Backbone) {
             videoData: '',
             start: 0,
             images: [],
-            image: []
+            image: [],
+            time: ''
         },
         initialize: function() {
             this.set('guid', this.generateGuid());

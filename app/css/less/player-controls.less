@@ -1,0 +1,85 @@
+#player-controls{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 10px 0;
+    background-color: @darkbg;
+    .box-shadow(0px -4px 10px 0px rgba(50, 50, 50, 0.75));
+    .thumbnail{
+        padding: 0;
+        margin: 0;
+        width: 46px;
+    }
+    .track-info{
+        margin: 0px 0 3px 0;
+        color: #6b6b77;
+        span{
+            color: #e4e4ef;
+        }
+    }
+    div.controls, div.progress-bar, div.volume, div.time{
+        display: inline-block;
+        vertical-align: top;
+    }
+    div.progress-bar{
+        width: 65%;
+        margin-right: 10px;
+    }
+    div.volume{
+        width: 15%;
+    }
+    div.time{
+        color: #6b6b77;
+        font-size: 12px;
+        margin-top: 6px;
+        margin-right: 20px;
+    }
+    div.progress-bar, div.volume{
+        position: relative;
+        margin-top: 4px;
+        background-color: #fff;
+        border: 0;
+        height: 20px;
+        padding: 0;
+        .ui-slider-range{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #00a3e2;
+        }
+        .ui-slider-handle{
+            position: absolute;
+            border: 1px solid #00a3e2;
+            background-color: #fff;
+            color: #00a3e2;
+            display: block;
+            width: 20px;
+            height: 20px;
+            top: 0px;
+            margin-left: -10px;
+            .border-radius(50%);
+            outline: 0;
+        }
+    }
+    button{
+        padding: 0;
+        margin: 0;
+        background-color: transparent;
+        display: inline;
+        margin-right: 20px;
+    }
+    button.pause{
+        .sprite(@pause-ico);
+    }
+    button.play{
+        .sprite(@play-ico);
+    }
+    button.next{
+        .sprite(@next-ico);
+    }
+    button.volume-ico{
+        .sprite(@volume-ico);
+        margin-right: 10px;
+    }
+}

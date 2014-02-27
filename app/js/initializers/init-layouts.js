@@ -3,12 +3,14 @@ define(['app', 'marionette',
         'views/dashboard.layout',
         'views/searchform.view',
         'views/track-results.layout',
+        'views/playercontrols.view'
     ],
     function(App,
         Marionette,
         DashboardLayout,
         SearchFormView,
-        TrackResultsLayout) {
+        TrackResultsLayout,
+        PlayerControlsView) {
         //add layout initializer
         App.addInitializer(function() {
             var container,
@@ -23,5 +25,7 @@ define(['app', 'marionette',
             DashboardLayout.searchForm.show(new SearchFormView());
             //show tracks results
             DashboardLayout.tracksResults.show(TrackResultsLayout);
+            //show player controls
+            //DashboardLayout.playerControls.show(PlayerControlsView);
         });
     });

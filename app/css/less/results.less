@@ -1,0 +1,79 @@
+#tracks-results{
+    header{
+        font-size: 24px;
+        color: #444444;
+    }
+    ul{
+        margin-top: 20px;
+        padding: 0;
+        list-style: none;
+        li{
+            position: relative;
+            cursor: pointer;
+            vertical-align: top;
+            display: inline-block;
+            margin: 0 15px 20px;
+            min-width: 130px;
+            text-align: left;
+            img.small{
+                display: none;
+            }
+            img.large{
+                width: 125px;
+                margin-bottom: 5px;
+            }
+            &:hover{
+                button.play{
+                    display: block;
+                }
+            }
+        }
+        .track:before{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 126px;
+            height: 94px;
+            content: url(../images/large-cover-shadow.png);
+        }
+        button{
+            display: none;
+        }
+        button.play{
+            .sprite(@play-track);
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            border: 0;
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+        }
+        button.queue{
+            display: block;
+            .sprite(@queue-ico);
+            position: absolute;
+            right: 10px;
+            top: 103px;
+            border: 0;
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+        }
+    }
+    h1,h2{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 130px;
+        font-size: 14px;
+        line-height: 17px;
+        margin: 0;
+    }
+    h1{
+        color: #6e6e71;
+    }
+    h2{
+        color: #b3b3b6;
+    }
+}

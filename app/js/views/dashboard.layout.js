@@ -7,6 +7,7 @@ define(['marionette'], function(Marionette) {
             tracksResults: '#tracks-results',
             videoPlayer: '#video-player',
             queueList: '#queue-list',
+            playerControls: '#player-controls',
         }
     });
     return new dashboard();

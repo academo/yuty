@@ -6,6 +6,7 @@ require.config({
         backbone: 'bower_components/backbone/backbone',
         underscore: 'bower_components/underscore/underscore-min',
         jquery: 'bower_components/jquery/dist/jquery.min',
+        jqueryui: 'bower_components/jqueryui/ui/minified/jquery-ui.min',
         marionette: 'bower_components/marionette/lib/backbone.marionette.min',
         'backbone.wreqr': 'bower_components/backbone.wreqr/lib/backbone.wreqr.min',
         'backbone.babysitter': 'bower_components/backbone.babysitter/lib/backbone.babysitter.min',

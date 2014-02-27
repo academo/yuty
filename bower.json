@@ -17,6 +17,7 @@
   "dependencies": {
     "marionette": "~1.6.2",
     "jquery": "1.*",
-    "requirejs": "~2.1.11"
+    "requirejs": "~2.1.11",
+    "jqueryui": "~1.10.4"
   }
 }

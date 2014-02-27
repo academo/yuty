@@ -1,0 +1,84 @@
+#queue-list{
+    header{
+        display: none;
+    }
+    ul{
+        list-style: none;
+        padding-left: 0;
+        padding-bottom: 20px;
+        margin: 0;
+        li{
+            position: relative;
+            img.small{
+                vertical-align: top;
+                display: inline-block;
+                width: 34px;
+            }
+            img.large{
+                display: none;
+            }
+            .track-data{
+                vertical-align: top;
+                display: inline-block;
+            }
+        }
+        li:last-child:after{
+            border:0;
+            height: 0;
+            content: '';
+        }
+        li:after{
+            margin: 10px 0;
+            display: block;
+            height: 3px;
+            background-color: #1d1d27;
+            border-top: 1px solid #3a3a49;
+            border-bottom: 1px solid #3a3a49;
+            content: ' ';
+        }
+        .track:before{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 34px;
+            height: 26px;
+            content: url(../images/small-cover-shadow.png);
+        }
+        li:hover{
+            button.unqueue{
+                display: block !important;
+            }
+        }
+    }
+    h1,h2{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 130px;
+    }
+    h1{
+        color: #b2b2be;
+        margin: 0;
+        font-size: 14px;
+    }
+    h2{
+        color: #5b5b64;
+        margin: 0;
+        font-size: 14px;
+    }
+    button{
+        display: none;
+    }
+    div.track{
+        cursor: pointer;
+    }
+    button.unqueue{
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        .sprite(@remove-song);
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+    }
+}

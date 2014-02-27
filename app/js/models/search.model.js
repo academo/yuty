@@ -5,7 +5,6 @@ define(['backbone', 'jquery', 'collections/trackslist.collection'], function(Bac
             limit: 11
         },
         search: function(term, limit) {
-            console.log(limit);
             var queryLimit = limit || this.get('limit');
             var deferred = $.Deferred();
             $.ajax('http://ws.audioscrobbler.com/2.0/', {

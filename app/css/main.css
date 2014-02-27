@@ -10,6 +10,13 @@ body {
   overflow: auto;
   background-color: #e4e4ef;
 }
+.separator {
+  display: block;
+  height: 4px;
+  background-color: #1d1d27;
+  border-top: 1px solid #3a3a49;
+  border-bottom: 1px solid #3a3a49;
+}
 #tracks-results header {
   font-size: 24px;
   color: #444444;
@@ -35,6 +42,9 @@ body {
   width: 125px;
   margin-bottom: 5px;
 }
+#tracks-results ul li:hover button.play {
+  display: block;
+}
 #tracks-results ul .track:before {
   position: absolute;
   top: 0;
@@ -45,6 +55,33 @@ body {
 }
 #tracks-results ul button {
   display: none;
+}
+#tracks-results ul button.play {
+  background-image: url(/images/sprites.png);
+  background-position: -5px -87px;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+#tracks-results ul button.queue {
+  display: block;
+  background-image: url(/images/sprites.png);
+  background-position: -5px -157px;
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  right: 10px;
+  top: 103px;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
 }
 #tracks-results h1,
 #tracks-results h2 {
@@ -61,80 +98,6 @@ body {
 }
 #tracks-results h2 {
   color: #b3b3b6;
-}
-.separator {
-  display: block;
-  height: 4px;
-  background-color: #1d1d27;
-  border-top: 1px solid #3a3a49;
-  border-bottom: 1px solid #3a3a49;
-}
-header.main {
-  height: 70px;
-  background-color: #313141;
-}
-header.main #logo {
-  font-size: 40px;
-  color: #fff;
-  padding: 10px;
-}
-.sidebar {
-  overflow: auto;
-  background-color: #313141;
-  padding-top: 20px;
-}
-.sidebar ul.side-nav {
-  padding-left: 10px;
-}
-.sidebar ul.side-nav li {
-  margin: 12px 0;
-}
-.sidebar ul.side-nav li a {
-  color: #fff;
-  font-size: 15px;
-  font-weight: 300;
-}
-.sidebar ul.side-nav li a:hover,
-.sidebar ul.side-nav li a.active {
-  color: #deab45;
-}
-.sidebar ul.side-nav li.divider {
-  border: 0;
-  margin: 40px 0;
-}
-#search-form {
-  padding-top: 17px;
-}
-#search-form form input[type=text] {
-  -webkit-border-radius: 15px;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 15px;
-  -moz-background-clip: padding;
-  border-radius: 15px;
-  background-clip: padding-box;
-  background-image: url(../images/search-ico.png);
-  background-repeat: no-repeat;
-  background-position: 8px 10px;
-  padding-left: 30px;
-}
-.video-sidebar {
-  padding: 0;
-}
-#video-player header {
-  background-color: #313141;
-}
-#video-player header h1 {
-  color: #fff;
-  font-size: 22px;
-  padding: 5px 10px 0;
-  margin: 0;
-}
-#video-player header h2 {
-  margin: 0;
-  padding: 0;
-  color: #fff;
-  padding: 0 10px 5px;
-  font-size: 15px;
 }
 #queue-list header {
   display: none;
@@ -213,10 +176,185 @@ header.main #logo {
   top: -5px;
   left: -5px;
   background-image: url(/images/sprites.png);
-  background-position: -5px -5px;
+  background-position: -5px -184px;
   width: 14px;
   height: 14px;
   background-color: transparent;
   padding: 0;
   margin: 0;
+}
+#player-controls {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 8px 10px 0;
+  background-color: #313141;
+  -webkit-box-shadow: 0px -4px 10px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0px -4px 10px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 0px -4px 10px 0px rgba(50, 50, 50, 0.75);
+}
+#player-controls .thumbnail {
+  padding: 0;
+  margin: 0;
+  width: 46px;
+}
+#player-controls .track-info {
+  margin: 0px 0 3px 0;
+  color: #6b6b77;
+}
+#player-controls .track-info span {
+  color: #e4e4ef;
+}
+#player-controls div.controls,
+#player-controls div.progress-bar,
+#player-controls div.volume,
+#player-controls div.time {
+  display: inline-block;
+  vertical-align: top;
+}
+#player-controls div.progress-bar {
+  width: 65%;
+  margin-right: 10px;
+}
+#player-controls div.volume {
+  width: 15%;
+}
+#player-controls div.time {
+  color: #6b6b77;
+  font-size: 12px;
+  margin-top: 6px;
+  margin-right: 20px;
+}
+#player-controls div.progress-bar,
+#player-controls div.volume {
+  position: relative;
+  margin-top: 4px;
+  background-color: #fff;
+  border: 0;
+  height: 20px;
+  padding: 0;
+}
+#player-controls div.progress-bar .ui-slider-range,
+#player-controls div.volume .ui-slider-range {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #00a3e2;
+}
+#player-controls div.progress-bar .ui-slider-handle,
+#player-controls div.volume .ui-slider-handle {
+  position: absolute;
+  border: 1px solid #00a3e2;
+  background-color: #fff;
+  color: #00a3e2;
+  display: block;
+  width: 20px;
+  height: 20px;
+  top: 0px;
+  margin-left: -10px;
+  -webkit-border-radius: 50%;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 50%;
+  -moz-background-clip: padding;
+  border-radius: 50%;
+  background-clip: padding-box;
+  outline: 0;
+}
+#player-controls button {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  display: inline;
+  margin-right: 20px;
+}
+#player-controls button.pause {
+  background-image: url(/images/sprites.png);
+  background-position: -5px -31px;
+  width: 14px;
+  height: 20px;
+}
+#player-controls button.play {
+  background-image: url(/images/sprites.png);
+  background-position: -5px -61px;
+  width: 14px;
+  height: 16px;
+}
+#player-controls button.next {
+  background-image: url(/images/sprites.png);
+  background-position: -5px -5px;
+  width: 19px;
+  height: 16px;
+}
+#player-controls button.volume-ico {
+  background-image: url(/images/sprites.png);
+  background-position: -5px -208px;
+  width: 17px;
+  height: 14px;
+  margin-right: 10px;
+}
+header.main {
+  height: 70px;
+  background-color: #313141;
+}
+header.main #logo {
+  font-size: 40px;
+  color: #fff;
+  padding: 10px;
+}
+.sidebar {
+  overflow: auto;
+  background-color: #313141;
+  padding-top: 20px;
+}
+.sidebar ul.side-nav {
+  padding-left: 10px;
+}
+.sidebar ul.side-nav li {
+  margin: 12px 0;
+}
+.sidebar ul.side-nav li a {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 300;
+}
+.sidebar ul.side-nav li a:hover,
+.sidebar ul.side-nav li a.active {
+  color: #deab45;
+}
+.sidebar ul.side-nav li.divider {
+  border: 0;
+  margin: 40px 0;
+}
+#search-form {
+  padding-top: 17px;
+}
+#search-form form input[type=text] {
+  -webkit-border-radius: 15px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 15px;
+  -moz-background-clip: padding;
+  border-radius: 15px;
+  background-clip: padding-box;
+  background-image: url(../images/search-ico.png);
+  background-repeat: no-repeat;
+  background-position: 8px 10px;
+  padding-left: 30px;
+}
+.video-sidebar {
+  padding: 0;
+  background-color: #313141;
+}
+#video-player header h1 {
+  color: #fff;
+  font-size: 22px;
+  padding: 5px 10px 0;
+  margin: 0;
+}
+#video-player header h2 {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  padding: 0 10px 5px;
+  font-size: 15px;
 }
