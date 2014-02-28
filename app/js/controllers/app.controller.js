@@ -74,7 +74,7 @@ define(['marionette',
                     that.dashboard.playerControls.show(playerControls);
                 });
 
-                //this.restoreLastVideo();
+                this._restoreLastVideo();
                 this._showQueue();
             },
             _showDashboard: function() {
@@ -92,7 +92,7 @@ define(['marionette',
             search: function(term) {
                 //ask Search model to search a term
                 var that = this;
-                SearchModel.search(term, this.searchLimit).then(function(tracksCollection) {
+                new SearchModel().search(term, this.searchLimit).then(function(tracksCollection) {
                     //create a tracklist view, set collection from results
                     var trackList = new TracklistView({
                         collection: tracksCollection,
@@ -101,7 +101,7 @@ define(['marionette',
                     that.dashboard.tracksResults.show(trackList);
                 });
             },
-            restoreLastVideo: function() {
+            _restoreLastVideo: function() {
                 //restore last played song from localstorage
                 var model = JSON.parse(localStorage.getItem('yuty-current-track'));
                 //check if a song in the recent 
@@ -116,6 +116,7 @@ define(['marionette',
             _showQueue: function() {
                 //create a queue collection
                 this.queue = new QueueCollection();
+                this.queue.fetch();
 
                 //create a tracklist view to use as queue
                 var queueView = new TracklistView({

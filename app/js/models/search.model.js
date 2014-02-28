@@ -1,6 +1,6 @@
 //takes a term and search on API
 define(['backbone', 'jquery', 'collections/trackslist.collection'], function(Backbone, $, TracksList) {
-    var searchModel = Backbone.Model.extend({
+    return Backbone.Model.extend({
         defaults: {
             limit: 11
         },
@@ -22,5 +22,4 @@ define(['backbone', 'jquery', 'collections/trackslist.collection'], function(Bac
             return deferred.promise();
         }
     });
-    return new searchModel();
 });
