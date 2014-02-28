@@ -10,7 +10,8 @@ define(['marionette',
         'views/playercontrols.view',
         'models/search.model',
         'models/track.model',
-        'collections/trackslist.collection'
+        'collections/trackslist.collection',
+        'collections/queue.collection'
     ],
     function(
         Marionette,
@@ -25,11 +26,14 @@ define(['marionette',
         PlayerControlsView,
         SearchModel,
         TrackModel,
-        TracksListCollection
+        TracksListCollection,
+        QueueCollection
     ) {
         return Marionette.Controller.extend({
             initialize: function(options) {
                 var that = this;
+
+                this._showDashboard();
 
                 this.searchLimit = parseInt(($('.main-area').width() / 160) * 2);
                 //listen to new search
@@ -43,7 +47,7 @@ define(['marionette',
                     var player = new VideoView({
                         model: track.saveRecent()
                     });
-                    DashboardLayout.videoPlayer.show(player);
+                    that.dashboard.videoPlayer.show(player);
                 });
 
                 //when a song is added to queue list
@@ -62,16 +66,23 @@ define(['marionette',
                     that.queue.unqueue(track);
                 });
 
-                vent.on('update:player', function(track, player){
+                vent.on('update:player', function(track, player) {
                     var playerControls = new PlayerControlsView({
                         model: track,
                         player: player
                     });
-                    DashboardLayout.playerControls.show(playerControls);
+                    that.dashboard.playerControls.show(playerControls);
                 });
 
-                this.restoreLastVideo();
-                this.showQueue();
+                //this.restoreLastVideo();
+                this._showQueue();
+            },
+            _showDashboard: function() {
+                var container = new Marionette.Region({
+                    el: "#container"
+                });
+                this.dashboard = new DashboardLayout();
+                container.show(this.dashboard);
             },
             //first page load
             index: function(options) {
@@ -80,14 +91,14 @@ define(['marionette',
             //when a search is peformed
             search: function(term) {
                 //ask Search model to search a term
+                var that = this;
                 SearchModel.search(term, this.searchLimit).then(function(tracksCollection) {
                     //create a tracklist view, set collection from results
                     var trackList = new TracklistView({
                         collection: tracksCollection,
-                        itemView: TrackView
                     });
                     //show new tracklist
-                    TrackResultsLayout.tracksList.show(trackList);
+                    that.dashboard.tracksResults.show(trackList);
                 });
             },
             restoreLastVideo: function() {
@@ -102,23 +113,17 @@ define(['marionette',
                     });
                 }
             },
-            showQueue: function() {
-                var that = this;
-                //create a tracklist collection to work as queue
-                this.queue = new TracksListCollection();
-                //assign a localstorage space
-                this.queue.localStorage = new Backbone.LocalStorage("yuty-queue");
-                //fetch curren items on localstorage
-                this.queue.fetch().then(function() {
-                    //on finish fetch create a tracklist view for queue
-                    //and assign queue collection
-                    var queueView = new TracklistView({
-                        collection: that.queue,
-                        itemView: TrackView
-                    });
-                    //show the queue in the layout
-                    DashboardLayout.queueList.show(queueView);
+            _showQueue: function() {
+                //create a queue collection
+                this.queue = new QueueCollection();
+
+                //create a tracklist view to use as queue
+                var queueView = new TracklistView({
+                    collection: this.queue
                 });
+
+                //render queue into dashboard
+                this.dashboard.queueList.show(queueView);
             }
         });
     });

@@ -28,7 +28,7 @@ define(['marionette', 'vent'], function(Marionette, vent) {
         //on video ready up volume and start playinh
         onVideoReady: function(e) {
             e.target.setVolume(0);
-            e.target.playVideo();
+            //e.target.playVideo();
             $('#embed-player').css('min-width', $("#video-player").width() + 'px');
 
             //trigger evento to aware the video has changed

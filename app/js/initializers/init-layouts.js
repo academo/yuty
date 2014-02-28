@@ -16,15 +16,13 @@ define(['app', 'marionette',
             var container,
                 trackResults;
             //general container
-            container = new Marionette.Region({
-                el: "#container"
-            });
+            
             //show dashboard                
-            container.show(DashboardLayout);
+            /*container.show(DashboardLayout);
             //show search form
             DashboardLayout.searchForm.show(new SearchFormView());
             //show tracks results
-            DashboardLayout.tracksResults.show(TrackResultsLayout);
+            DashboardLayout.tracksResults.show(TrackResultsLayout);*/
             //show player controls
             //DashboardLayout.playerControls.show(PlayerControlsView);
         });

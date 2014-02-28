@@ -1,5 +1,5 @@
 define(['marionette'], function(Marionette) {
-    var trackResults = Marionette.Layout.extend({
+    return Marionette.Layout.extend({
         template: templates['track-results'],
         regions: {
             tracksList: {
@@ -9,5 +9,4 @@ define(['marionette'], function(Marionette) {
             artistList: '#artists-list'
         }
     });
-    return new trackResults();
 });

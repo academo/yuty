@@ -1,6 +1,7 @@
 //view which manages basic view
-define(['marionette', 'views/track.view'], function(Marionette) {
+define(['marionette', 'views/track.view'], function(Marionette, TrackView) {
     return Marionette.CompositeView.extend({
+        itemView: TrackView,
         template: templates['track-list'],
         itemViewContainer: "ul",
         onShow: function(){

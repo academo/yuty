@@ -1,6 +1,8 @@
 define(['marionette'], function(Marionette) {
-    var dashboard = Marionette.Layout.extend({
+    return Marionette.Layout.extend({
         template: templates.dashboard,
+        initialize: function(){
+        },
         regions: {
             searchForm: '#search-form',
             playlists: '#playlists',
@@ -10,5 +12,4 @@ define(['marionette'], function(Marionette) {
             playerControls: '#player-controls',
         }
     });
-    return new dashboard();
 });
