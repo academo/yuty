@@ -2,15 +2,11 @@ define(['marionette',
         'vent',
         'backbone',
         'views/dashboard.layout',
-        'views/searchform.view',
-        'views/track-results.layout',
         'views/tracklist.view',
-        'views/track.view',
         'views/video.view',
         'views/playercontrols.view',
         'models/search.model',
         'models/track.model',
-        'collections/trackslist.collection',
         'collections/queue.collection'
     ],
     function(
@@ -18,30 +14,27 @@ define(['marionette',
         vent,
         Backbone,
         DashboardLayout,
-        SearchFormView,
-        TrackResultsLayout,
         TracklistView,
-        TrackView,
         VideoView,
         PlayerControlsView,
         SearchModel,
         TrackModel,
-        TracksListCollection,
         QueueCollection
     ) {
         return Marionette.Controller.extend({
             initialize: function(options) {
                 var that = this;
 
-                this._showDashboard();
-
+                //stablish search limit based on current window resolution
                 this.searchLimit = parseInt(($('.main-area').width() / 160) * 2);
+
                 //listen to new search
                 vent.on('search:set', function(term) {
                     Backbone.history.navigate('search/' + term, {
                         trigger: true
                     });
                 });
+
                 //listen when a track is played
                 vent.on('play:video', function(track) {
                     var player = new VideoView({
@@ -66,6 +59,7 @@ define(['marionette',
                     that.queue.unqueue(track);
                 });
 
+                //when a new video start playing, update playercontrols
                 vent.on('update:player', function(track, player) {
                     var playerControls = new PlayerControlsView({
                         model: track,
@@ -74,9 +68,12 @@ define(['marionette',
                     that.dashboard.playerControls.show(playerControls);
                 });
 
+                //show dashboard, restore last video and init queue
+                this._showDashboard();
                 this._restoreLastVideo();
                 this._showQueue();
             },
+            //init container and show dashboard layout
             _showDashboard: function() {
                 var container = new Marionette.Region({
                     el: "#container"
@@ -86,7 +83,8 @@ define(['marionette',
             },
             //first page load
             index: function(options) {
-
+                //Need to add some text to queue, video and probably show featured music
+                //currently the dasboard is totally empty the first time
             },
             //when a search is peformed
             search: function(term) {
@@ -101,6 +99,7 @@ define(['marionette',
                     that.dashboard.tracksResults.show(trackList);
                 });
             },
+            //restore last video from localstorage if any
             _restoreLastVideo: function() {
                 //restore last played song from localstorage
                 var model = JSON.parse(localStorage.getItem('yuty-current-track'));
@@ -113,6 +112,7 @@ define(['marionette',
                     });
                 }
             },
+            //initilaize the queue and show it in dashboard
             _showQueue: function() {
                 //create a queue collection
                 this.queue = new QueueCollection();

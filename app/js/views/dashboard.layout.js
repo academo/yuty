@@ -1,7 +1,8 @@
-define(['marionette'], function(Marionette) {
+define(['marionette', 'views/searchform.view'], function(Marionette, SearchFormView) {
     return Marionette.Layout.extend({
         template: templates.dashboard,
-        initialize: function(){
+        onRender: function(){
+            this.searchForm.show(new SearchFormView());
         },
         regions: {
             searchForm: '#search-form',
