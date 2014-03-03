@@ -2,6 +2,7 @@ define(['marionette', 'views/searchform.view'], function(Marionette, SearchFormV
     return Marionette.Layout.extend({
         template: templates.dashboard,
         onRender: function(){
+            //show search bar
             this.searchForm.show(new SearchFormView());
         },
         regions: {

@@ -31,7 +31,7 @@ require.config({
 });
 
 //application initializers load
-define(['initializers/init-routes', 'initializers/init-layouts'], function(App) {
+define(['initializers/init-routes'], function(App) {
     App.on('initialize:after', function() {
         Backbone.history.start();
     });
